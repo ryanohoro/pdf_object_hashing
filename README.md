@@ -7,9 +7,16 @@ Starting with a generic python library. I wanted this to help streamline creatin
 ## pdf_obj_hash.py
 Command line tool to generate the PDF object hash of a given PDF.  Also supports scanning an entire directory.
 
-``` 
-usage: pdf_obj_hash_v2.py [-h] [-f FILE] [-d DIR] [--ftrace] [--debug] [--time-trace] [--print-hash-string] [--hunt-string HUNT_STRING] [--print-info]
+### Usage
 
+Run as a Python module (no installation required):
+```bash
+python -m pdf_object_hashing.pdf_obj_hash [-h] [-f FILE] [-d DIR] [--ftrace] [--debug] [--time-trace] [--print-hash-string] [--hunt-string HUNT_STRING] [--print-info]
+```
+
+### Options
+
+``` 
 Generate a PDF Object Hash of the provided file or files.
 
 options:
@@ -23,8 +30,22 @@ options:
   --hunt-string HUNT_STRING
                         hunt for a complete or partial hash string ("Catalog|Producer|Pages|Page|None|Length")
   --print-info          kinda debug, print object and object number
+```
 
+### Examples
 
+```bash
+# Analyze a single PDF file
+python -m pdf_object_hashing.pdf_obj_hash -f document.pdf
+
+# Scan all PDFs in a directory
+python -m pdf_object_hashing.pdf_obj_hash -d /path/to/pdfs/
+
+# Print the hash string instead of MD5 hash
+python -m pdf_object_hashing.pdf_obj_hash -f document.pdf --print-hash-string
+
+# Hunt for specific object patterns
+python -m pdf_object_hashing.pdf_obj_hash -f document.pdf --hunt-string "Catalog|Producer|Pages"
 ``` 
 
 ## What is a PDF Object Hash?

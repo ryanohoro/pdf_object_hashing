@@ -3,7 +3,7 @@ import re
 import hashlib
 import zlib
 import time
-from pdf_param_parser import parse_pdf_parameters
+from .pdf_param_parser import parse_pdf_parameters
 
 """
 

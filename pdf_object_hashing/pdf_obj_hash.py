@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from pdf_lib import pdf_object as po
+from .pdf_lib import pdf_object as po
 import argparse
 import glob
 import os
@@ -49,7 +49,8 @@ class pdf_tester():
     
 
 
-if __name__ == "__main__":
+def main():
+    """Main entry point for the pdf-obj-hash command line tool."""
     pdf = pdf_tester()
     file_list = pdf.generate_file_list()
     for f in file_list:
@@ -89,3 +90,7 @@ if __name__ == "__main__":
         if pdf.args.debug:
             print(f"Object Count: {len(pdf.pdf_object.object_offset_list)} // runtime: {runtime}")
             print(f"xref entries: {pdf.pdf_object.xref_entries}")
+
+
+if __name__ == "__main__":
+    main()

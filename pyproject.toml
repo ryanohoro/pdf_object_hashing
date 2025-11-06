@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "pdf-object-hashing"
+version = "0.1.0"
+description = "PDF tools and libraries for analyzing PDF structure and generating object hashes"
+authors = ["Kyle Eaton"]
+readme = "README.md"
+packages = [{include = "pdf_object_hashing"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.0"
+
+[tool.poetry.scripts]
+pdf-obj-hash = "pdf_object_hashing.pdf_obj_hash:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
