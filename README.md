@@ -9,7 +9,12 @@ Command line tool to generate the PDF object hash of a given PDF.  Also supports
 
 ### Usage
 
-Run as a Python module (no installation required):
+Call the script directly:
+```bash
+python pdf_object_hashing/pdf_obj_hash.py [-h] [-f FILE] [-d DIR] [--ftrace] [--debug] [--time-trace] [--print-hash-string] [--hunt-string HUNT_STRING] [--print-info]
+```
+
+Run as a module:
 ```bash
 python -m pdf_object_hashing.pdf_obj_hash [-h] [-f FILE] [-d DIR] [--ftrace] [--debug] [--time-trace] [--print-hash-string] [--hunt-string HUNT_STRING] [--print-info]
 ```
@@ -36,16 +41,16 @@ options:
 
 ```bash
 # Analyze a single PDF file
-python -m pdf_object_hashing.pdf_obj_hash -f document.pdf
+python pdf_object_hashing/pdf_obj_hash.py -f document.pdf
 
 # Scan all PDFs in a directory
-python -m pdf_object_hashing.pdf_obj_hash -d /path/to/pdfs/
+python pdf_object_hashing/pdf_obj_hash.py -d /path/to/pdfs/
 
 # Print the hash string instead of MD5 hash
-python -m pdf_object_hashing.pdf_obj_hash -f document.pdf --print-hash-string
+python pdf_object_hashing/pdf_obj_hash.py -f document.pdf --print-hash-string
 
 # Hunt for specific object patterns
-python -m pdf_object_hashing.pdf_obj_hash -f document.pdf --hunt-string "Catalog|Producer|Pages"
+python pdf_object_hashing/pdf_obj_hash.py -f document.pdf --hunt-string "Catalog|Producer|Pages"
 ``` 
 
 ## What is a PDF Object Hash?

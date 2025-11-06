@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 
-from .pdf_lib import pdf_object as po
+try:
+    from .pdf_lib import pdf_object as po
+except ImportError:
+    import sys
+    import os
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    from pdf_object_hashing.pdf_lib import pdf_object as po
 import argparse
 import glob
 import os
