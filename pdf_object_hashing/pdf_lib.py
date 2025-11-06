@@ -32,9 +32,25 @@ we need a function to parse out any ref objects found in an object's parameters,
 
 
 class pdf_object():
-    def __init__(self, fname):
-        self.fname = fname
-        self.fdata = open(fname, 'rb').read()
+    def __init__(self, file_input):
+        # Handle both file paths and file-like objects
+        if hasattr(file_input, 'read'):
+            # It's a file-like object
+            self.fname = getattr(file_input, 'name', '<file-like object>')
+            if hasattr(file_input, 'seek'):
+                file_input.seek(0)  # Reset to beginning if seekable
+            self.fdata = file_input.read()
+            if hasattr(file_input, 'seek'):
+                file_input.seek(0)  # Reset again for potential reuse
+        elif isinstance(file_input, (bytes, bytearray)):
+            # It's raw bytes
+            self.fname = '<bytes object>'
+            self.fdata = bytes(file_input)
+        else:
+            # It's a file path (original behavior)
+            self.fname = file_input
+            self.fdata = open(file_input, 'rb').read()
+        
         self.sha256 = hashlib.sha256(self.fdata).hexdigest()
         # data and objects 
         self.start_list = []
